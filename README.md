@@ -17,5 +17,5 @@ Mettre en pratique les notions sur les systèmes de fichiers.
 # NB: README à mettre à jour progressivement par l'équipe.
 
 
-# L'objectif principal de notre projet est de faciliter la compréhension et l'analyse approfondie des systèmes de fichiers EXT4 en fournissant un outil unifié permettant d'explorer de manière claire et accessible la structure interne, les métadonnées et l'organisation physique des fichiers sous Debian.
+### L'objectif principal de notre projet est de faciliter la compréhension et l'analyse approfondie des systèmes de fichiers EXT4 en fournissant un outil unifié permettant d'explorer de manière claire et accessible la structure interne, les métadonnées et l'organisation physique des fichiers sous Debian.
 
