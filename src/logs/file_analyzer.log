@@ -1,0 +1,15 @@
+2026-02-09 18:29:53,953 | INFO | Début analyse : main.py
+2026-02-09 18:29:53,976 | INFO | Analyse terminée avec succès
+2026-02-09 18:32:25,836 | INFO | Début analyse : /home/belviane/Pictures/Screenshots/image
+2026-02-09 18:32:25,841 | WARNING | Le fichier n'est pas situé sur un système EXT4
+2026-02-09 18:32:25,841 | ERROR | Erreur détection type : Fichier introuvable
+2026-02-09 18:32:25,841 | ERROR | Erreur métadonnées : [Errno 2] No such file or directory: '/home/belviane/Pictures/Screenshots/image'
+2026-02-09 18:32:25,844 | ERROR | Erreur organisation physique : Erreur lors de l'analyse des extents
+2026-02-09 18:32:25,844 | ERROR | Erreur affichage contenu : 'NoneType' object is not subscriptable
+2026-02-09 18:32:25,845 | WARNING | Analyse terminée avec erreurs
+2026-02-09 18:32:38,714 | INFO | Début analyse : /home/belviane/Pictures/Screenshots/image.png
+2026-02-09 18:32:38,843 | INFO | Analyse terminée avec succès
+2026-02-09 18:35:08,245 | INFO | Début analyse : /home/belviane/Pictures/Screenshots/image.png
+2026-02-09 18:35:08,387 | INFO | Analyse terminée avec succès
+2026-02-09 18:35:22,112 | INFO | Début analyse : /home/belviane/Pictures/Screenshots/image.png
+2026-02-09 18:35:22,235 | INFO | Analyse terminée avec succès
