@@ -21,16 +21,23 @@ def read_binary_content(file_path, max_size):
         truncated = f.read(1) != b""
     return hexdump(data), truncated
 
-def display_content(file_path, is_binary, max_size=1024 * 1024):
-    if is_binary:
-        content, truncated = read_binary_content(file_path, max_size)
-        mode = "hexadecimal"
-    else:
-        content, truncated = read_text_content(file_path, max_size)
-        mode = "text"
+def display_content(file_path, is_binary, max_size=1024*1024):
 
-    return {
-        "mode": mode,
-        "content": content,
-        "truncated": truncated
+    result = {
+        "preview": None
     }
+
+    if is_binary:
+        result["preview"] = "Fichier binaire - affichage non supporté."
+        return result
+
+    try:
+        with open(file_path, "r", encoding="utf-8", errors="replace") as f:
+            content = f.read(max_size)
+
+        result["preview"] = content
+
+    except Exception as e:
+        result["preview"] = f"Erreur lecture contenu : {e}"
+
+    return result

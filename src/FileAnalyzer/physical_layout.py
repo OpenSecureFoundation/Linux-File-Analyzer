@@ -3,47 +3,45 @@
 import subprocess
 import re
 
-def run_filefrag(file_path):
-    """
-    Exécute filefrag -v pour récupérer les extents EXT4
-    """
-    cmd = ["filefrag", "-v", file_path]
-    result = subprocess.run(cmd, capture_output=True, text=True)
-
-    if result.returncode != 0:
-        raise RuntimeError("Erreur lors de l'analyse des extents")
-
-    return result.stdout
-
-def parse_extents(output):
-    extents = []
-    lines = output.splitlines()
-
-    for line in lines:
-        # Exemple ligne :
-        # 0: 0..7: 105632..105639: 8 blocks
-        match = re.search(
-            r'^\s*\d+:\s+(\d+)\.\.\d+:\s+(\d+)\.\.\d+:\s+(\d+)\s+blocks',
-            line
-        )
-        if match:
-            logical_offset = int(match.group(1))
-            physical_block = int(match.group(2))
-            length = int(match.group(3))
-
-            extents.append({
-                "logical_offset": logical_offset,
-                "physical_block": physical_block,
-                "length": length
-            })
-
-    return extents
-
 def analyze_physical_layout(file_path):
-    output = run_filefrag(file_path)
-    extents = parse_extents(output)
-
-    return {
-        "total_extents": len(extents),
-        "extents": extents
+    result = {
+        "total_extents": 0,
+        "extents": []
     }
+
+    try:
+        process = subprocess.run(
+            ["filefrag", "-v", file_path],
+            capture_output=True,
+            text=True
+        )
+
+        output = process.stdout.splitlines()
+
+        extent_pattern = re.compile(
+            r"\s*\d+:\s+(\d+)\.\.\s*(\d+):\s+(\d+)\.\.\s*(\d+):\s+(\d+)"
+        )
+
+        for line in output:
+            match = extent_pattern.search(line)
+            if match:
+                logical_start = int(match.group(1))
+                logical_end = int(match.group(2))
+                physical_start = int(match.group(3))
+                physical_end = int(match.group(4))
+                length = int(match.group(5))
+
+                result["extents"].append({
+                    "logical_start": logical_start,
+                    "logical_end": logical_end,
+                    "physical_start": physical_start,
+                    "physical_end": physical_end,
+                    "length": length
+                })
+
+        result["total_extents"] = len(result["extents"])
+
+    except Exception as e:
+        raise RuntimeError(f"Erreur analyse physique : {e}")
+
+    return result
