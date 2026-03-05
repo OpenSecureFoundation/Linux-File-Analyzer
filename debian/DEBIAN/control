@@ -1,0 +1,21 @@
+Package: linux-file-analyzer
+Version: 1.0.0
+Section: utils
+Priority: optional
+Architecture: all
+Depends: python3 (>= 3.9), python3-tk, python3-matplotlib, python3-reportlab, python3-pil, file, e2fsprogs
+Maintainer: SONGMENE LADO Belviane <belviaine@example.com>
+Description: Analyseur avancé de fichiers EXT4
+ Outil graphique pour analyser en profondeur les fichiers
+ sur les partitions EXT4 sous Debian.
+ .
+ Fonctionnalités:
+  * Détection automatique du type de fichier
+  * Extraction des métadonnées (inode, permissions, dates)
+  * Analyse de l'organisation physique (extents)
+  * Calcul du taux de fragmentation
+  * Visualisation graphique de la carte des blocs
+  * Export PDF/HTML/TXT
+Homepage: https://github.com/belviaine/linux-file-analyzer
+
+

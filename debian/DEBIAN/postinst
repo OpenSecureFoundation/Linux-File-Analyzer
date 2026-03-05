@@ -1,0 +1,22 @@
+#!/bin/bash
+# Script exécuté après installation
+
+set -e
+
+echo "📦 Configuration de Linux File Analyzer..."
+
+# Mettre à jour le cache des icônes
+if command -v update-icon-caches >/dev/null 2>&1; then
+    update-icon-caches /usr/share/icons/hicolor
+fi
+
+# Mettre à jour le cache des applications
+if command -v update-desktop-database >/dev/null 2>&1; then
+    update-desktop-database
+fi
+
+# Créer un lien symbolique dans /usr/bin (alternative)
+ln -sf /usr/local/bin/file-analyzer /usr/bin/file-analyzer 2>/dev/null || true
+
+echo "✅ Installation terminée !"
+echo "   Lancez avec: file-analyzer"

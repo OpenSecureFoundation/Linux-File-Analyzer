@@ -1,0 +1,16 @@
+#!/bin/bash
+# Lanceur pour Linux File Analyzer
+
+# Définir le chemin d'installation
+INSTALL_DIR="/usr/local/lib/linux-file-analyzer"
+
+# Vérifier les privilèges root
+if [ "$EUID" -ne 0 ]; then 
+    echo "⚠️  Certaines fonctionnalités nécessitent les droits root (analyse des extents)"
+    echo "   Relancez avec 'sudo' pour une analyse complète."
+    echo ""
+fi
+
+# Lancer l'application
+cd "$INSTALL_DIR"
+python3 main.py

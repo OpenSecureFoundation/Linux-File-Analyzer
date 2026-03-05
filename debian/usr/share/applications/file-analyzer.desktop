@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=File Analyzer
+Comment=Analyseur avancé de fichiers EXT4
+Exec=file-analyzer
+Icon=file-analyzer
+Terminal=false
+Type=Application
+Categories=System;Utility;
+Keywords=file;analyzer;ext4;fragmentation;
+StartupNotify=true

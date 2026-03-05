@@ -1,0 +1,11 @@
+#!/bin/bash
+# Script exécuté avant suppression
+
+set -e
+
+echo "🗑️  Suppression de Linux File Analyzer..."
+
+# Supprimer le lien symbolique
+rm -f /usr/bin/file-analyzer
+
+echo "✅ Suppression terminée."

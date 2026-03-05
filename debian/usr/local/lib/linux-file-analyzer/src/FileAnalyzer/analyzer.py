@@ -30,13 +30,13 @@ def analyze(file_path, options=None):
 
     logger.info(f"Début analyse : {file_path}")
 
-    # Taille du fichier
+    # 0️⃣ Taille du fichier
     try:
         result["file_size"] = os.path.getsize(file_path)
     except Exception as e:
         logger.error(f"Erreur taille fichier : {e}")
 
-    # vérifications système
+    # 1️⃣ Vérifications système
     if not check_root():
         error = "L'analyse nécessite des privilèges root"
         logger.error(error)
@@ -49,7 +49,7 @@ def analyze(file_path, options=None):
         logger.warning(error)
         result["errors"].append(error)
 
-    # Détection type
+    # 2️⃣ Détection type
     try:
         type_info = analyze_file_type(file_path)
         result["type_analysis"] = type_info
@@ -59,7 +59,7 @@ def analyze(file_path, options=None):
         result["errors"].append(str(e))
         result["type_analysis"] = {"file_type": "Erreur détection"}
 
-    # Métadonnées
+    # 3️⃣ Métadonnées
     try:
         metadata = extract_metadata(file_path)
         result["metadata"] = metadata
@@ -67,7 +67,7 @@ def analyze(file_path, options=None):
         logger.error(f"Erreur métadonnées : {e}")
         result["errors"].append(str(e))
 
-    # Organisation physique
+    # 4️⃣ Organisation physique
     try:
         layout = analyze_physical_layout(file_path)
         result["physical_layout"] = layout
@@ -76,7 +76,7 @@ def analyze(file_path, options=None):
         result["errors"].append(str(e))
         layout = None
 
-    # Fragmentation
+    # 5️⃣ Fragmentation
     try:
         if layout and "extents" in layout:
             result["fragmentation"] = compute_fragmentation(layout["extents"])
@@ -92,7 +92,7 @@ def analyze(file_path, options=None):
         logger.error(f"Erreur fragmentation : {e}")
         result["errors"].append(str(e))
 
-    # Contenu
+    # 6️⃣ Contenu
     try:
         is_binary = result["type_analysis"].get("is_binary", True) if result["type_analysis"] else True
         max_size = options.get("max_display_size", 1024 * 1024)
