@@ -1,0 +1,7 @@
+# Dépendances principales
+matplotlib>=3.5.0
+reportlab>=4.0.0
+Pillow>=9.0.0
+
+# Pas besoin d'inclure tkinter car il est inclus avec Python
+# Pas besoin d'inclure les modules standard (os, sys, json, etc.)
